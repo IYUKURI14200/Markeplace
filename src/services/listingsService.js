@@ -15,6 +15,7 @@ export async function createListing(data, user) {
     price: Number(data.price),
     contactPhone: data.contactPhone || "",
     imageUrl: data.imageUrl || "",
+    sold: false,
     ownerId: user.uid,
     ownerName: user.displayName || user.email,
     ownerEmail: user.email,
@@ -47,5 +48,8 @@ export async function updateListing(id, data) {
     imageUrl: data.imageUrl || "",
   });
 }
+
+export const setListingSold = (id, sold) =>
+  updateDoc(doc(db, "listings", id), { sold });
 
 export const deleteListing = (id) => deleteDoc(doc(db, "listings", id));
