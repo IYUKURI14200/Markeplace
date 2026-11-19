@@ -7,6 +7,13 @@ export default function ListingCard({ listing, isOwner, onDelete }) {
 
   return (
     <div className="flex flex-col rounded-xl bg-white p-4 shadow">
+      {listing.imageUrl && (
+        <img
+          src={listing.imageUrl}
+          alt={listing.title}
+          className="mb-3 h-44 w-full rounded-lg object-cover"
+        />
+      )}
       <h2 className="text-lg font-bold">{listing.title}</h2>
       <p className="my-1 text-xl font-semibold text-blue-600">${listing.price}</p>
       <p className="mb-3 flex-1 text-sm text-gray-600">{listing.description}</p>

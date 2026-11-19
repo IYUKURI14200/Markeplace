@@ -14,6 +14,7 @@ export async function createListing(data, user) {
     description: data.description,
     price: Number(data.price),
     contactPhone: data.contactPhone || "",
+    imageUrl: data.imageUrl || "",
     ownerId: user.uid,
     ownerName: user.displayName || user.email,
     ownerEmail: user.email,
@@ -29,7 +30,7 @@ export async function getAllListings() {
 // where() query: only the current user's listings
 export async function getMyListings(uid) {
   const snap = await getDocs(query(listingsRef, where("ownerId", "==", uid)));
-  return snap.docs.map(withId); // sorted in the page, avoids needing an index
+  return snap.docs.map(withId);
 }
 
 export async function getListing(id) {
@@ -43,6 +44,7 @@ export async function updateListing(id, data) {
     description: data.description,
     price: Number(data.price),
     contactPhone: data.contactPhone || "",
+    imageUrl: data.imageUrl || "",
   });
 }
 
